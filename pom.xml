@@ -14,7 +14,7 @@
         <module>v1_15_R1</module>
         <module>v1_16_R3</module>
         <module>v1_20_R1</module>
-        <module>dist</module>
+        <!-- <module>dist</module> -->
     </modules>
 
     <properties>

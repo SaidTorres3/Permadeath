@@ -10,10 +10,26 @@ public class VersionManager {
     private static MinecraftVersion minecraftVersion;
 
     static {
-        version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3].substring(1);
+        String packageName = Bukkit.getServer().getClass().getPackage().getName();
+        
+        String[] parts = packageName.split("\\.");
+        String ver = null;
+        
+        for (String part : parts) {
+            if (part.startsWith("v")) {
+                ver = part.substring(1);
+                break;
+            }
+        }
+        
+        if (ver == null) {
+            ver = "1_15_R1"; 
+        }
+        version = ver;
         try {
-            minecraftVersion = MinecraftVersion.valueOf("v" + getRev());
-        } catch (Exception ignored) {
+            minecraftVersion = MinecraftVersion.valueOf("v" + ver);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
